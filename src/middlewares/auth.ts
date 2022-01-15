@@ -9,10 +9,13 @@ export class Auth {
     passport.authenticate('jwt', (err, user, info) => {
       if (err) {
         console.log(err);
-        return res.status(403).json({ status: err, code: 'Access denied'});
+        return res.status(403).json({ status: err, message: 'Access denied'});
+      }
+      if (info?.name === "TokenExpiredError") {
+        return res.status(403).json({ code: 'TOKEN_EXPIRED', message: 'Token Expired' });
       }
       if (!user) {
-        return res.status(403).json({ code: 'Access denied' });
+        return res.status(403).json({ code: 'UNAUTHORIZED', message: 'Access denied' });
       } else {
         req.user = info;
         return next();
