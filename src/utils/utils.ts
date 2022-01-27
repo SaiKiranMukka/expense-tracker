@@ -46,3 +46,33 @@ export const verifySignedToken = async (token: any) => {
 export const validatePassword = async (providedPwd: string, actualPwd: string,) => {
   return await bcrypt.compare(providedPwd, actualPwd);
 }
+
+export const getLastNMonthsNames = (numOfMonths: number) => {
+
+  const currentDate: Date = new Date();
+  const lastNMonths: Array<string> = [];
+
+  for (let i = 0; i < numOfMonths; i++) {
+    lastNMonths.push(CONSTANTS.MONTH_NAMES[currentDate.getMonth()] + ', ' + currentDate.getFullYear());
+    currentDate.setMonth(currentDate.getMonth() - 1);
+  };
+
+  return lastNMonths;
+}
+
+export const getLastNDaysDates = (numOfDays: number) => {
+
+  const currentDate: Date = new Date();
+  const lastNDays: Array<string> = [];
+
+  for (let i = 0; i < numOfDays; i++) {
+    lastNDays.push(CONSTANTS.MONTH_NAMES[currentDate.getMonth()].substring(0, 3) + ' ' + currentDate.getDate() + ', ' + currentDate.getFullYear());
+    currentDate.setDate(currentDate.getDate() - 1);
+  };
+
+  return lastNDays;
+}
+
+export const getPaymentModesList = () => {
+  return ['Credit Card', 'Debit Card', 'Cash', 'Cheque', 'Online Transaction'];
+}

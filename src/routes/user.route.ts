@@ -16,6 +16,6 @@ export class UserRoutes {
     this.router.post('/register', this.userController.registerUser);
     //this.router.post('/register', registerValidation, this.userController.registerUser);
     this.router.post('/login', this.userController.authenticateUser);
-    this.router.post('/logout', this.auth.authenticateJWT, this.userController.logoutUser);
+    this.router.post('/logout', this.userController.logoutUser);
   }
 }

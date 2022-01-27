@@ -4,26 +4,27 @@ import { generateHashedPassword } from '../utils/utils';
 
 export class UserService {
 
-  constructor() {}
+  constructor() { }
 
-  async getUser (userId: string) {
+  async getUser(userId: string) {
     return UserModel.findOne({ "_id": new MongooseTypes.ObjectId(userId) }).exec()
   }
 
-  async createUser (body: any) {
+  async createUser(body: any) {
     const user = new UserModel(body);
     user.password = await generateHashedPassword(user.password.toString());
     return UserModel.create(user);
   }
 
-  async updateUser () {
+  async updateUser() {
+    // TODO
   }
 
-  async findUser (userEmail: string) {
+  async findUser(userEmail: string) {
     return await UserModel.findOne({ email: userEmail }).lean().exec();
   }
 
-  async logoutUser (userEmail: string) {
+  async logoutUser(userEmail: string) {
     return UserModel.findOneAndUpdate({ email: userEmail });
   }
 
