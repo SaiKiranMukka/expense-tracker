@@ -4,6 +4,8 @@
   "description": "To track the expenses",
   "main": "dist/index.js",
   "scripts": {
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
     "build": "rimraf ./dist && tsc",
     "preserve": "npm run build",
     "serve": "cross-env NODE_ENV=development nodemon",
