@@ -1,4 +1,3 @@
-import './App.css';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Routes from '../Routes';
@@ -14,6 +13,7 @@ import {
   PointElement,
   ArcElement
 } from 'chart.js';
+import { makeStyles } from "@material-ui/core";
 
 ChartJS.register(
   CategoryScale,
@@ -27,11 +27,19 @@ ChartJS.register(
   Legend,
 );
 
+const useStyles = makeStyles(() => ({
+  App: {
+    textAlign: 'center'
+  }
+}));
+
 function App() {
+
+  const classes = useStyles();
   
   return (
 
-    <div className="App">
+    <div className={classes.App}>
 
       <Routes />
 

@@ -28,10 +28,10 @@ app.use('/api/expense', new ExpenseRoutes().router);
 app.use('/api/dashboard', new DashboardRoutes().router);
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '/client/build')));
+    app.use(express.static(path.join(__dirname, "../", "/client/build")));
     
     app.get("*", (req: Request, res: Response) => {
-        res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+        res.sendFile(path.join(__dirname, "../", "client", "build", "index.html"));
     });
 }
 app.get("/", (req: Request, res: Response) => {
