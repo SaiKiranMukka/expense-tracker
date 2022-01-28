@@ -176,7 +176,7 @@ export class DashboardController {
 
     const numOfMonths: number = Number(req.query?.numOfMonths) ?? 0;
     const lastNMonthsNames: string[] = getLastNMonthsNames(numOfMonths);
-    const creditCardData: number[] = new Array(numOfMonths).fill(10);
+    const creditCardData: number[] = new Array(numOfMonths).fill(0);
 
     const responseData = {
       labels: lastNMonthsNames,

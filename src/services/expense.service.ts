@@ -16,7 +16,7 @@ export class ExpenseService {
 
   async findUserExpenses(userId: any) {
 
-    return await ExpenseModel.find({ "recordedBy": userId }).exec();
+    return await ExpenseModel.find({ "recordedBy": userId }).sort({ "createdAt": -1 }).exec();
   }
 
   async updateExpense(expenseId: string, updatedData: any) {
