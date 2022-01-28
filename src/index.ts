@@ -10,6 +10,7 @@ import { connectDatabase } from './config/mongoose-config.service';
 import { UserRoutes } from './routes/user.route';
 import { ExpenseRoutes } from './routes/expense.route';
 import { DashboardRoutes } from './routes/dashboard.route';
+import path from 'path';
 
 const PORT = config.PORT;
 const app: Application = express();
@@ -26,6 +27,13 @@ app.use('/api/user', new UserRoutes().router);
 app.use('/api/expense', new ExpenseRoutes().router);
 app.use('/api/dashboard', new DashboardRoutes().router);
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/client/build')));
+    
+    app.get("*", (req: Request, res: Response) => {
+        res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    });
+}
 app.get("/", (req: Request, res: Response) => {
     res.send(runningMessage);
 });
